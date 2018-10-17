@@ -1,9 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using ProfileQuiz.Model;
+using ProfileQuiz.ViewModel;
+using System.Diagnostics;
+using ProfileQuiz.ViewModel;
+using SQLite;
+
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace ProfileQuiz
 {
@@ -12,6 +20,19 @@ namespace ProfileQuiz
         public MainPage()
         {
             InitializeComponent();
+            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "DBProfileQuiz.db3");
+            var db = new SQLiteConnection(dbPath);
+            Trace.WriteLine("DB File located at: " + dbPath);
+        }
+
+        public void AddUser_Clicked(object sender, EventArgs e)
+        {
+            this.Navigation.PushAsync(new View.AddUserPage());
+        }
+
+        public void Users_Clicked(object sender, EventArgs e)
+        {
+            this.Navigation.PushAsync(new View.UserListPage());
         }
     }
 }

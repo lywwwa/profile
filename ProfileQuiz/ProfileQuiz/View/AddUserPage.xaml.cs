@@ -28,6 +28,8 @@ namespace ProfileQuiz.View
 
         }
 
+       
+
         public async void PhotoAction(string _action)
         {
 

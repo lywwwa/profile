@@ -11,7 +11,7 @@ namespace ProfileQuiz
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new View.AddUserPage());
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

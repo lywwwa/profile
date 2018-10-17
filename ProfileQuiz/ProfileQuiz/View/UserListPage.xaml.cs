@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using ProfileQuiz.Model;
+using ProfileQuiz.ViewModel;
 using System.Diagnostics;
 using ProfileQuiz.ViewModel;
 using SQLite;
@@ -18,24 +19,19 @@ namespace ProfileQuiz.View
 	public partial class UserListPage : ContentPage
 	{
       
-        //UOM uom;
+        
 
         public UserListPage ()
 		{
            
             InitializeComponent();
            
-
-            InitializeComponent();
-           BindingContext = new UserViewModel(this);
+            BindingContext = new UserViewModel(this);
 
         }
 
-       
-
 
         public void Add_Clicked(object sender, EventArgs a)
-
         {
             this.Navigation.PushAsync(new View.AddUserPage());
         }

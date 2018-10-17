@@ -5,7 +5,6 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="add_user.png" Text="Add User" Clicked="Add_Clicked"/>
-        
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
@@ -17,11 +16,11 @@
                         <ViewCell Height="40">
                             <StackLayout Orientation="Horizontal">
                                 <StackLayout Orientation="Vertical" Margin="5,5,10,5">
+
                                     <Label Text="{Binding Id}" TextColor="BlueViolet"/>
                                     <Label Text="{Binding UserName}" TextColor="CadetBlue"/>
-                                    <Label Text="{Binding FullName}" TextColor="CadetBlue"/>
-                                    <Label Text="{Binding UserEmail}" TextColor="CadetBlue"/>
-                                    <Label Text="{Binding CellNo}" TextColor="CadetBlue"/>
+
+
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>

@@ -4,11 +4,44 @@
              xmlns:local="clr-namespace:ProfileQuiz"
              x:Class="ProfileQuiz.MainPage">
 
-    <StackLayout>
         <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    <AbsoluteLayout>
+
+        <StackLayout 
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
+                AbsoluteLayout.LayoutFlags="All">
+
+
+            <StackLayout Padding="0,50,0,0">
+                <Image Source="profileimg.png"
+                       WidthRequest = "150"
+                       HeightRequest = "150"/>
+            </StackLayout>
+
+            <AbsoluteLayout Padding="0,0,0,0" >
+                <Button Text="Add User" 
+                    Clicked="AddUser_Clicked"
+                    TextColor="AntiqueWhite"
+                    BackgroundColor="#524365"
+                    FontSize="Medium"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    AbsoluteLayout.LayoutBounds=".5,0,.83,.25" 
+                    AbsoluteLayout.LayoutFlags="All"/>
+
+                <Button Text="Users" 
+                    Clicked="Users_Clicked"
+                    TextColor="AntiqueWhite"
+                    BackgroundColor="#524365"
+                    FontSize="Medium"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    AbsoluteLayout.LayoutBounds=".5,.62,.83,.25"
+                    AbsoluteLayout.LayoutFlags="All"/>
+            </AbsoluteLayout>
+        </StackLayout>
+
+
+    </AbsoluteLayout>
 
 </ContentPage>

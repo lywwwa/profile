@@ -68,23 +68,17 @@ namespace ProfileQuiz.ViewModel
             }
         }
 
-        
-
      
-
-       
-
-
 
         public UserViewModel(ContentPage page)
         {
             Page = page;
-           // GetUOM();
+           
             userinfo = new UserInfo();
-          //  user = new User();
+
             RefreshItemList();
             SaveNewUserCommand = new Command<Button>(SaveUser);
-           // ItemSelectedCommand = new Command<Picker>(ItemSelected);
+ 
         }
 
         public void SaveUser(Button btn)
@@ -92,20 +86,20 @@ namespace ProfileQuiz.ViewModel
             string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "DBProfileQuiz.db3");
 
             Database db = new Database(dbPath);
-            //GetEntries();
+
             if (btn.Text.ToLower().Contains("Add User".ToLower()))
             {
                
-               // userinfo = new UserInfo();
+               //userinfo = new UserInfo();
               Trace.WriteLine("ADDQUAN: " + userinfo.Id + "/" + userinfo.FullName + "/" + userinfo.ProfilePic+"/"+ userinfo.UserName + "/"+ userinfo.UserEmail + "/"+userinfo.CellNo);
-                db.SaveUserInfoAsync(userinfo);
-                RefreshItemList();
+               
 
             }
 
-           
-          
-         Page.Navigation.PushAsync(new UserListPage());
+
+            db.SaveUserInfoAsync(userinfo);
+            RefreshItemList();
+            Page.Navigation.PushAsync(new UserListPage());
         }
 
     

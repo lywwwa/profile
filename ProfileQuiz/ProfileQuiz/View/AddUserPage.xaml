@@ -18,13 +18,14 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Image x:Name="Image"
+                              
                            WidthRequest="70" 
                                HeightRequest="70"
                             VerticalOptions="Center"
                                Grid.Row="0" 
                                Grid.Column="0" 
                                Grid.RowSpan="2"
-                               
+ 
                            >
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer
@@ -80,23 +81,7 @@
                             CommandParameter="{Binding Source={x:Reference UserButton}}"/>
 
 
-                <ListView ItemsSource="{Binding Userlist, Mode=TwoWay}" >
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell Height="40">
-                                <StackLayout Orientation="Horizontal">
-                                    <StackLayout Orientation="Vertical" Margin="5,5,10,5">
-                                        <Label Text="{Binding Id}" TextColor="BlueViolet"/>
-                                        <Label Text="{Binding UserName}" TextColor="CadetBlue"/>
-                                        <Label Text="{Binding FullName}" TextColor="CadetBlue"/>
-                                        <Label Text="{Binding UserEmail}" TextColor="CadetBlue"/>
-                                        <Label Text="{Binding CellNo}" TextColor="CadetBlue"/>
-                                    </StackLayout>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                
 
 
             </StackLayout>
