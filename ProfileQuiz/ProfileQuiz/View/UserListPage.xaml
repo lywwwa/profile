@@ -5,6 +5,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="add_user.png" Text="Add User" Clicked="Add_Clicked"/>
+        
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
