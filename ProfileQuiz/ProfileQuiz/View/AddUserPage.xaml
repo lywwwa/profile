@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProfileQuiz.View.AddUserPage">
+    <ContentPage.Content>
+
+            <ScrollView>
+                <StackLayout>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100" />
+                            <RowDefinition Height="100" />
+                            <RowDefinition Height="100" />
+                            <RowDefinition Height="100" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image x:Name="Image"
+                           WidthRequest="70" 
+                               HeightRequest="70"
+                            VerticalOptions="Center"
+                               Grid.Row="0" 
+                               Grid.Column="0" 
+                               Grid.RowSpan="2"
+                               
+                           >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                Tapped="OnActionSheetSimpleClicked"
+                NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Entry x:Name="UserInfo_uname"
+                               Placeholder="UserName"
+                            Text="{Binding userinfo.UserName, Mode=TwoWay}"
+                            FontSize="Medium"
+                            Grid.Row="0" 
+                            Grid.Column="1"
+                            VerticalOptions="End"
+                       />
+                        <Entry x:Name="UserInfo_Name"
+                               Placeholder="Full Name"
+                               Text="{Binding userinfo.FullName,Mode=TwoWay}"
+                             FontSize="Medium"
+                             Grid.Row="1"
+                             Grid.Column="1" 
+                       />
+
+                        <Label Text="Email " 
+                       FontAttributes="Bold"
+                       Grid.Row="2" 
+                       Grid.Column="0" 
+                       />
+                    <Entry  x:Name="UserInfo_email" 
+                            Text="{Binding userinfo.UserEmail,Mode=TwoWay}"
+                               FontSize="Medium"
+                               Grid.Row="2" 
+                               Grid.Column="1" />
+
+                        <Label Text="Cellphone no " 
+                       FontAttributes="Bold"
+                       Grid.Row="3" 
+                       Grid.Column="0" 
+                       />
+                    <Entry x:Name="UserInfo_cellno" 
+                            Text="{Binding userinfo.CellNo,Mode=TwoWay}"
+                             FontSize="Medium"
+                             Grid.Row="3"
+                             Grid.Column="1"
+                       />
+
+                    
+                    </Grid>
+
+                <Button x:Name="UserButton" Text="Add User" FontSize="Medium" 
+                                Command="{Binding SaveNewUserCommand}"
+                            CommandParameter="{Binding Source={x:Reference UserButton}}"/>
+
+
+                <ListView ItemsSource="{Binding Userlist, Mode=TwoWay}" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="40">
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Vertical" Margin="5,5,10,5">
+                                        <Label Text="{Binding Id}" TextColor="BlueViolet"/>
+                                        <Label Text="{Binding UserName}" TextColor="CadetBlue"/>
+                                        <Label Text="{Binding FullName}" TextColor="CadetBlue"/>
+                                        <Label Text="{Binding UserEmail}" TextColor="CadetBlue"/>
+                                        <Label Text="{Binding CellNo}" TextColor="CadetBlue"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+            </StackLayout>
+        </ScrollView>
+
+        </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProfileQuiz.View.UserListPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="add_user.png" Text="Add User" Clicked="Add_Clicked"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Users" FontSize="Medium" ></Label>
+            <ListView x:Name="Userlist" ItemsSource="{Binding Userlist}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="40">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Vertical" Margin="5,5,10,5">
+                                    <Label Text="{Binding Id}" TextColor="BlueViolet"/>
+                                    <Label Text="{Binding UserName}" TextColor="CadetBlue"/>
+                                    <Label Text="{Binding FullName}" TextColor="CadetBlue"/>
+                                    <Label Text="{Binding UserEmail}" TextColor="CadetBlue"/>
+                                    <Label Text="{Binding CellNo}" TextColor="CadetBlue"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+          
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

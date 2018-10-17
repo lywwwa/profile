@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ProfileQuiz"
+             x:Class="ProfileQuiz.View.UserProfilePage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="delete_user.png" Text="Delete User" Clicked="Delete_Clicked"/>
+        <ToolbarItem Icon="update_user.png" Text="Edit User" Clicked="Edit_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="100" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="Image"
+                           WidthRequest="70" 
+                               HeightRequest="70"
+                            VerticalOptions="Center"
+                               Grid.Row="0" 
+                               Grid.Column="0" 
+                               Grid.RowSpan="2"
+                           >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                Tapped="OnActionSheetSimpleClicked"
+                NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Label Text="{Binding FullName}"
+                       FontSize="Medium"
+                       Grid.Row="0" 
+                       Grid.Column="1"
+                           VerticalOptions="End"
+                       />
+                    <Label Text="{Binding UserEmail}"
+                       FontSize="Small"
+                       Grid.Row="1"
+                       Grid.Column="1" 
+                       />
+
+                    <Label Text="Number " 
+                       FontAttributes="Bold"
+                       Grid.Row="2" 
+                       Grid.Column="0" 
+                       />
+                    <Label Text="{Binding CellNo}"
+                       Grid.Row="2" 
+                       Grid.Column="1" />
+
+
+                    <Label Text="Username "
+                       FontAttributes="Bold"
+                       Grid.Row="3" 
+                       Grid.Column="0" 
+                       />
+                    <Label Text="{Binding UserName}"
+                       Grid.Row="3" 
+                       Grid.Column="1" 
+                       />
+                </Grid>
+            </StackLayout>
+            
+            
+        </ScrollView>
+       
+    </ContentPage.Content>
+</ContentPage>
