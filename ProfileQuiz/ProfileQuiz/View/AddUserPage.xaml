@@ -18,14 +18,13 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Image x:Name="Image"
-                              
-                           WidthRequest="70" 
-                               HeightRequest="70"
+                               Source="{Binding userinfo.ProfilePic, Mode=TwoWay}"
                             VerticalOptions="Center"
+                               WidthRequest="150"
+                               HeightRequest="150"
                                Grid.Row="0" 
                                Grid.Column="0" 
                                Grid.RowSpan="2"
- 
                            >
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer
@@ -48,12 +47,15 @@
                              FontSize="Medium"
                              Grid.Row="1"
                              Grid.Column="1" 
+                               VerticalOptions="Start"
                        />
 
                         <Label Text="Email " 
                        FontAttributes="Bold"
                        Grid.Row="2" 
                        Grid.Column="0" 
+                               FontSize="Medium"
+                                VerticalOptions="Center"
                        />
                     <Entry  x:Name="UserInfo_email" 
                             Text="{Binding userinfo.UserEmail,Mode=TwoWay}"
@@ -63,6 +65,8 @@
 
                         <Label Text="Cellphone no " 
                        FontAttributes="Bold"
+                               VerticalOptions="Center"
+                               FontSize="Medium"
                        Grid.Row="3" 
                        Grid.Column="0" 
                        />
@@ -78,11 +82,22 @@
 
                 <Button x:Name="UserButton" Text="Add User" FontSize="Medium" 
                                 Command="{Binding SaveNewUserCommand}"
-                            CommandParameter="{Binding Source={x:Reference UserButton}}"/>
-
-
-                
-
+                        TextColor="White"
+                    BackgroundColor="#524365"
+                        WidthRequest="70"
+                        HeightRequest="50"
+                        BorderRadius="25"
+                  />
+                <Button x:Name="DeleteUserButton" Text="Delete User" FontSize="Medium" 
+                                Command="{Binding DeleteUserCommand}"
+                        TextColor="White"
+                        IsVisible="false"
+                    BackgroundColor="#524365"
+                        WidthRequest="70"
+                        HeightRequest="50"
+                        BorderRadius="25"
+                  />
+                <Label Text="" x:Name="pathfile"/>
 
             </StackLayout>
         </ScrollView>

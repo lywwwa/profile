@@ -14,7 +14,7 @@ using Xamarin.Forms;
 
 namespace ProfileQuiz.ViewModel
 {
-    class UserViewModel
+    public class UserViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
@@ -24,8 +24,13 @@ namespace ProfileQuiz.ViewModel
         }
 
         public ICommand SaveNewUserCommand { get; set; }
-     
-        ContentPage Page;
+
+        public ICommand UpdateUserCommand { get; set; }
+        public ICommand RefreshListCommand { get; set; }
+        public ICommand DeleteUserCommand { get; set; }
+        
+
+        AddUserPage Page;
 
        
 
@@ -68,54 +73,83 @@ namespace ProfileQuiz.ViewModel
             }
         }
 
-     
-
-        public UserViewModel(ContentPage page)
+        private String _FilePath;
+        public String FilePath
         {
-            Page = page;
-           
-            userinfo = new UserInfo();
-
-            RefreshItemList();
-            SaveNewUserCommand = new Command<Button>(SaveUser);
- 
-        }
-
-        public void SaveUser(Button btn)
-        {
-            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "DBProfileQuiz.db3");
-
-            Database db = new Database(dbPath);
-
-            if (btn.Text.ToLower().Contains("Add User".ToLower()))
+            get
             {
-               
-               //userinfo = new UserInfo();
-              Trace.WriteLine("ADDQUAN: " + userinfo.Id + "/" + userinfo.FullName + "/" + userinfo.ProfilePic+"/"+ userinfo.UserName + "/"+ userinfo.UserEmail + "/"+userinfo.CellNo);
-               
-
+                return _FilePath;
             }
 
-
-            db.SaveUserInfoAsync(userinfo);
-            RefreshItemList();
-            Page.Navigation.PushAsync(new UserListPage());
+            set
+            {
+                if (_FilePath != value)
+                {
+                    _FilePath = value;
+                    OnPropertyChanged("FilePath");
+                }
+            }
         }
 
-    
-        public async void RefreshItemList()
+        public UserViewModel(AddUserPage page, UserInfo ui)
+        {
+            Page = page;
+            if (ui == null) userinfo = new UserInfo();
+            else userinfo = ui;
+            RefreshUserList();
+            
+            SaveNewUserCommand = new Command(SaveUser);
+            RefreshListCommand = new Command(RefreshUserList);
+            DeleteUserCommand = new Command(DeleteUser);
+
+        }
+
+        public void SaveUser()
+        {
+           string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "DBProfileQuiz.db3");
+           Database db = new Database(dbPath);
+            GetImagePath();
+            db.SaveUserInfoAsync(userinfo);
+            Trace.WriteLine("ADDQUAN: " + userinfo.Id + "/" + userinfo.FullName + "/" + userinfo.ProfilePic + "/" + userinfo.UserName + "/" + userinfo.UserEmail + "/" + userinfo.CellNo + "/" + userinfo.ProfilePic);
+            userinfo = new UserInfo();
+            RefreshUserList();
+            Page.Navigation.PopAsync();
+            Page.Navigation.PushAsync(new MainPage());
+        }
+
+        public void DeleteUser()
+        {
+            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "DBProfileQuiz.db3");
+            Database db = new Database(dbPath);
+            db.DeleteUserInfoAsync(userinfo);
+            RefreshUserList();
+            Trace.WriteLine("Deleted!!");
+            Page.Navigation.PopAsync();
+            Page.Navigation.PushAsync(new MainPage());
+        }
+
+
+        public async void RefreshUserList()
         {
             string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "DBProfileQuiz.db3");
 
             Database db = new Database(dbPath);
             var list = await db.GetUsersInfoAsync();
-           
+
             Userlist = new ObservableCollection<UserInfo>(list);
+            if (Userlist == null)
+            {
+                Trace.WriteLine("NULL??");
+            }
+            else Trace.WriteLine("NO");
+
+
         }
-
-
-       
-
+        
+        public void GetImagePath()
+        {
+            userinfo.ProfilePic = Page.FilePath;
+        }
 
     }
 }

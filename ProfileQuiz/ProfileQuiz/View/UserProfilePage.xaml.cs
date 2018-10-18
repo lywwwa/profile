@@ -9,6 +9,9 @@ using Xamarin.Forms.Xaml;
 
 using Plugin.Media;
 using System.Diagnostics;
+using Plugin.Media;
+using ProfileQuiz.ViewModel;
+using ProfileQuiz.Model;
 
 namespace ProfileQuiz.View
 {
@@ -18,18 +21,10 @@ namespace ProfileQuiz.View
 		public UserProfilePage()
 		{
 			InitializeComponent ();
-            //overlay.isVisible = false;
-		}
-
-        async void OnActionSheetSimpleClicked(object sender, EventArgs e)
-        {
-            var action = await DisplayActionSheet("", "Cancel", null, "Take Photo", "Pick Photo");
-            Debug.WriteLine("Action: " + action);
-            PhotoAction(action);
-       
+            BindingContext = new UserViewModel(null, null);
         }
 
-       
+      
 
         public void Edit_Clicked(object sender, EventArgs a)
 
@@ -43,7 +38,7 @@ namespace ProfileQuiz.View
             //change photo
         }
 
-        public async void PhotoAction(string _action)
+/*        public async void PhotoAction(string _action)
         {
 
             if (_action.Equals("Take Photo"))
@@ -100,6 +95,6 @@ namespace ProfileQuiz.View
                         return stream;
                     });
                 }
-            }
+            }*/
         }
     }

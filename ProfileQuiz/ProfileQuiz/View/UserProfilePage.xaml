@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:ProfileQuiz"
              x:Class="ProfileQuiz.View.UserProfilePage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="delete_user.png" Text="Delete User" Clicked="Delete_Clicked"/>
+        <ToolbarItem Icon="delete_user.png" Text="Delete User" Command="{Binding UpdateUserCommand}"/>
         <ToolbarItem Icon="update_user.png" Text="Edit User" Clicked="Edit_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
@@ -29,11 +29,7 @@
                                Grid.Column="0" 
                                Grid.RowSpan="2"
                            >
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
-                Tapped="OnActionSheetSimpleClicked"
-                NumberOfTapsRequired="1" />
-                        </Image.GestureRecognizers>
+                      
                     </Image>
 
                     <Label Text="{Binding FullName}"

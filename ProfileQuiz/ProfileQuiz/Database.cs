@@ -30,14 +30,6 @@ namespace ProfileQuiz
             return database.Table<UserInfo>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task<UserInfo> GetDescUserInfoAsync()
-        {
-            return database.Table<UserInfo>().OrderByDescending(i => i.Id).FirstOrDefaultAsync();
-        }
-
-       
-
-
 
         public Task<int> SaveUserInfoAsync(UserInfo userinfo)
         {
@@ -51,18 +43,18 @@ namespace ProfileQuiz
             }
         }
 
-       
+
+        public Task<int> UpdateUserInfoAsync(UserInfo userinfo)
+        {
+            
+                return database.UpdateAsync(userinfo);
+        }
 
 
 
         public Task<int> DeleteUserInfoAsync(UserInfo userinfo)
         {
             return database.DeleteAsync(userinfo);
-        }
-
-        public Task<int> DeleteUserAsync(User user)
-        {
-            return database.DeleteAsync(user);
         }
 
     }

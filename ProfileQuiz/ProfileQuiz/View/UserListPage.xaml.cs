@@ -18,23 +18,27 @@ namespace ProfileQuiz.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class UserListPage : ContentPage
 	{
-      
-        
-
+    
         public UserListPage ()
-		{
-           
+        {
+
+            BindingContext = new UserViewModel(null, null);
+
             InitializeComponent();
-           
-            BindingContext = new UserViewModel(this);
 
         }
 
 
         public void Add_Clicked(object sender, EventArgs a)
         {
-            this.Navigation.PushAsync(new View.AddUserPage());
+            this.Navigation.PopAsync();
+            this.Navigation.PushAsync(new View.AddUserPage(null));
         }
 
+        private void Userlist_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            this.Navigation.PopAsync();
+            this.Navigation.PushAsync(new View.AddUserPage(Userlist.SelectedItem as UserInfo));
+        }
     }
 }

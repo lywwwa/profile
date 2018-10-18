@@ -27,11 +27,13 @@ namespace ProfileQuiz
 
         public void AddUser_Clicked(object sender, EventArgs e)
         {
-            this.Navigation.PushAsync(new View.AddUserPage());
+            this.Navigation.PopAsync();
+            this.Navigation.PushAsync(new View.AddUserPage(null));
         }
 
         public void Users_Clicked(object sender, EventArgs e)
         {
+            this.Navigation.PopAsync();
             this.Navigation.PushAsync(new View.UserListPage());
         }
     }
